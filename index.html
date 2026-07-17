@@ -1,0 +1,2038 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAINT GERMAIN — Conversas de Liderança</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+:root{
+  /* Cores base do novo tema escuro inspirado no print */
+  --bg: #0C0C10;
+  --ink: #FFFFFF;
+  --muted: #8F8F9D;
+  --surface: #15151A;
+  --surface-2: #1E1E26;
+  --surface-sunken: #08080A;
+  
+  /* Bordas mais sutis */
+  --border: #262630;
+  --border-strong: #3F3F4E;
+  
+  /* Acentos (Roxo do Stakent) */
+  --black: #FFFFFF; 
+  --teal: #8B5CF6; /* Cor principal - roxo */
+  --teal-dark: #A78BFA; /* Roxo claro */
+  --teal-tint: rgba(139, 92, 246, 0.15); /* Roxo com transparência */
+  
+  /* Cores de status */
+  --amber: #FBBF24;
+  --amber-tint: rgba(251, 191, 36, 0.15);
+  --brick: #F87171;
+  --brick-tint: rgba(248, 113, 113, 0.15);
+  --sage: #34D399;
+  --sage-tint: rgba(52, 211, 153, 0.15);
+  
+  /* Tipografia tech/moderna */
+  --font-display: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  
+  /* Bordas arredondadas e sombras adaptadas para dark mode */
+  --radius: 18px;
+  --radius-sm: 12px;
+  --radius-lg: 24px;
+  --shadow-xs: 0 1px 2px rgba(0,0,0,.5);
+  --shadow-sm: 0 4px 12px rgba(0,0,0,.6), 0 1px 2px rgba(0,0,0,.4);
+  --shadow-md: 0 10px 28px rgba(0,0,0,.7), 0 2px 6px rgba(0,0,0,.5);
+  --shadow-lg: 0 24px 60px rgba(0,0,0,.8), 0 8px 20px rgba(0,0,0,.6);
+  --glow-primary: 0 0 20px rgba(139, 92, 246, 0.25);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:15px;
+  line-height:1.55;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+.app-shell{min-height:100vh;display:flex;flex-direction:column;}
+::selection{background:var(--teal);color:#fff;}
+:focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important;transition-duration:.001ms !important;}
+}
+
+/* ---------- Logo Saint Germain (texto vetorial — sempre nítido, sem perda de qualidade) ---------- */
+.sg-logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  white-space: nowrap;
+  line-height: 1;
+  display: inline-block;
+}
+.sg-logo--compact {
+  font-size: 15px;
+}
+.sg-logo--hero {
+  font-size: 26px;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.05));
+}
+.brand-tagline{color:var(--muted);font-size:12.5px;margin-left:2px;font-weight:500;}
+
+/* ---------- Topbar ---------- */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 32px;border-bottom:1px solid var(--border);
+  background:rgba(12, 12, 16, .85);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  position:sticky;top:0;z-index:40;
+}
+.brand{display:flex;align-items:center;gap:14px;}
+.brand h1{font-family:var(--font-display);font-size:22px;font-weight:600;margin:0;letter-spacing:.2px;}
+.brand small{display:block;color:var(--muted);font-size:12px;margin-top:1px;}
+.topbar-right{display:flex;align-items:center;gap:14px;}
+.role-badge{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--teal-dark);background:var(--teal-tint);padding:6px 12px;border-radius:999px;
+  font-weight:600; border: 1px solid rgba(139, 92, 246, 0.3);
+}
+.role-badge.admin{color:var(--ink);background:var(--surface-2);border-color:var(--border-strong);}
+.btn-ghost-small{
+  background:transparent;border:1px solid var(--border);color:var(--ink);
+  padding:8px 16px;border-radius:var(--radius-sm);font-family:var(--font-body);font-size:13px;
+  font-weight:600;cursor:pointer;transition:all .2s ease;
+}
+.btn-ghost-small:hover{border-color:var(--teal);background:var(--teal-tint);color:var(--teal-dark);}
+
+main#view{flex:1;display:flex;flex-direction:column;}
+.screen{display:none;flex:1;flex-direction:column;}
+.screen.active{display:flex;}
+
+/* ---------- Gate ---------- */
+.gate-wrap{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:70px 24px;text-align:center;gap:34px;
+}
+.gate-hero{max-width:560px;}
+.gate-hero h2{font-family:var(--font-display);font-size:46px;font-weight:700;margin:20px 0 12px;letter-spacing:-.02em;line-height:1.1;}
+.gate-hero p{color:var(--muted);font-size:16.5px;max-width:460px;margin:0 auto;line-height:1.6;}
+.gate-cards{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:8px;}
+.gate-card{
+  width:270px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:30px 26px;cursor:pointer;text-align:left;box-shadow:var(--shadow-sm);
+  transition:all .2s cubic-bezier(.2,.7,.3,1);
+}
+.gate-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--teal);
+  box-shadow:var(--glow-primary);
+  background: linear-gradient(180deg, #1A1A22 0%, #15151A 100%);
+}
+.gate-card .icon-row{display:flex;gap:6px;margin-bottom:18px;}
+.gate-card .icon-circle{
+  width:42px;height:42px;border-radius:12px;background:var(--teal-tint);
+  display:flex;align-items:center;justify-content:center;color:var(--teal-dark);flex-shrink:0;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+.gate-card h3{font-family:var(--font-display);font-size:20px;margin:0 0 8px;font-weight:600;}
+.gate-card p{color:var(--muted);font-size:13.5px;margin:0;line-height:1.55;}
+
+/* ---------- Login screens ---------- */
+.login-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 20px;}
+.login-card{
+  width:390px;max-width:100%;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:36px 32px;box-shadow:var(--shadow-md);
+}
+.login-card h2{font-family:var(--font-display);font-size:25px;margin:0 0 6px;font-weight:600;}
+.login-card .sub{color:var(--muted);font-size:13.5px;margin:0 0 24px;line-height:1.5;}
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:12px;font-weight:600;margin-bottom:7px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);}
+.field input, .field textarea, .field select{
+  width:100%;font-family:var(--font-body);font-size:14.5px;padding:12px 14px;
+  border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface-sunken);color:var(--ink);
+  transition:all .2s ease;
+}
+.field input:focus, .field textarea:focus, .field select:focus{
+  outline:none;border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-tint);
+}
+.field.code input{font-family:var(--font-mono);letter-spacing:.15em;text-transform:uppercase;font-weight:600;}
+.error-msg{color:var(--brick);font-weight:500;font-size:13px;margin:-6px 0 14px;display:none;}
+.error-msg.show{display:block;}
+
+.btn-primary{
+  width:100%;
+  background: linear-gradient(135deg, var(--teal) 0%, #6D28D9 100%);
+  color:#fff;border:none;padding:13px 18px;border-radius:var(--radius-sm);
+  font-family:var(--font-body);font-size:14.5px;font-weight:600;cursor:pointer;
+  transition:all .2s ease;
+  box-shadow:var(--shadow-xs);
+}
+.btn-primary:hover{box-shadow:var(--glow-primary); filter: brightness(1.1);}
+.btn-primary:active{transform:translateY(1px);}
+
+.btn-secondary{
+  background:var(--surface-2);color:var(--ink);border:1px solid var(--border);
+  padding:11px 18px;border-radius:var(--radius-sm);font-family:var(--font-body);font-size:13.5px;font-weight:600;cursor:pointer;
+  transition:all .15s ease;
+}
+.btn-secondary:hover{background:var(--surface-strong);border-color:var(--border-strong);}
+.back-link{display:inline-block;margin-bottom:18px;color:var(--muted);font-size:13px;cursor:pointer;text-decoration:none;font-weight:500; transition: color .2s;}
+.back-link:hover{color:var(--teal-dark);}
+
+/* ---------- Dashboard shared layout ---------- */
+.dash{flex:1;padding:36px 34px 64px;max-width:1120px;margin:0 auto;width:100%;}
+.dash-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:30px;flex-wrap:wrap;gap:14px;}
+.dash-head h2{font-family:var(--font-display);font-size:30px;margin:0 0 5px;font-weight:600;letter-spacing:-.01em;}
+.dash-head p{color:var(--muted);margin:0;font-size:14px;max-width:520px;line-height:1.55;}
+.divider-row{display:flex;align-items:center;gap:10px;margin:38px 0 18px;}
+.divider-row .mini-mark{width:16px;height:11px;position:relative;flex-shrink:0;}
+.divider-row .mini-mark span{position:absolute;top:0;width:11px;height:11px;border-radius:3px;border:1.6px solid var(--teal-dark);}
+.divider-row .mini-mark span:last-child{left:5px;border-color:var(--teal);background:var(--surface);}
+.divider-row h3{font-family:var(--font-display);font-size:16.5px;margin:0;font-weight:600;}
+.divider-row::after{content:"";flex:1;height:1px;background:var(--border);}
+
+/* record cards list */
+.record-list{display:flex;flex-direction:column;gap:10px;}
+.record-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:17px 20px;
+  cursor:pointer;box-shadow:var(--shadow-xs);
+  transition:all .2s ease;
+}
+.record-card:hover{border-color:var(--border-strong);background:var(--surface-2); transform:translateY(-1px);}
+.record-card-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;}
+.record-card-top .name{font-weight:600;font-size:15px;}
+.record-card-top .date{font-family:var(--font-mono);font-size:12px;color:var(--muted);}
+.record-card .dept{color:var(--muted);font-size:13px;margin-top:3px;}
+.tags{display:flex;gap:6px;margin-top:11px;flex-wrap:wrap;}
+.tag{font-size:11px;padding:4px 10px 4px 8px;border-radius:999px;font-weight:600;letter-spacing:.02em;display:inline-flex;align-items:center;gap:5px; border:1px solid transparent;}
+.tag::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0;}
+.tag.ok{background:var(--sage-tint);color:var(--sage);border-color:rgba(52,211,153,.2);}
+.tag.warn{background:var(--amber-tint);color:var(--amber);border-color:rgba(251,191,36,.2);}
+.tag.risk{background:var(--brick-tint);color:var(--brick);border-color:rgba(248,113,113,.2);}
+.empty-state{
+  border:1px dashed var(--border-strong);border-radius:14px;padding:44px 20px;text-align:center;color:var(--muted);
+  background:var(--surface-sunken);
+}
+.empty-state strong{display:block;color:var(--ink);font-family:var(--font-display);font-size:18px;margin-bottom:6px;font-weight:600;}
+
+/* buttons row */
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-primary.wide{width:auto;padding:12px 24px;}
+
+/* ---------- Form ---------- */
+.form-card{background:transparent;border:none;padding:0;max-width:760px;box-shadow:none;display:flex;flex-direction:column;gap:14px;}
+.form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+
+/* Card por pergunta — inspirado no formato "tópico" (ícone + título + campo) */
+.q-block{
+  background:var(--surface);border:1px solid var(--border);border-radius:18px;
+  padding:20px 22px;box-shadow:var(--shadow-xs);
+  transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.q-block:focus-within{border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-tint);}
+.q-block-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:13px;}
+.q-icon{
+  width:36px;height:36px;border-radius:10px;background:var(--teal-tint);
+  display:flex;align-items:center;justify-content:center;color:var(--teal-dark);flex-shrink:0;
+  border:1px solid rgba(139, 92, 246, 0.2);
+}
+.q-icon svg{width:17px;height:17px;}
+.q-block label{display:block;font-weight:600;font-size:14px;margin-bottom:0;line-height:1.4;color:var(--ink);padding-top:6px;}
+.q-block .hint{font-weight:400;color:var(--muted);font-size:12.5px;display:block;margin-top:2px;}
+.q-block input[type="text"], .q-block input[type="date"], .q-block textarea{
+  width:100%;font-family:var(--font-body);font-size:14px;padding:12px 14px;
+  border:1px solid var(--border);border-radius:13px;background:var(--surface-sunken);color:var(--ink);
+  transition:all .2s ease;
+}
+.q-block input[type="text"]::placeholder, .q-block textarea::placeholder{color:var(--muted);}
+.q-block input[type="text"]:focus, .q-block input[type="date"]:focus, .q-block textarea:focus{
+  outline:none;border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-tint);
+}
+.q-block input[type="date"]{color-scheme:dark;}
+.toggle-row{display:flex;gap:4px;background:var(--surface-sunken);padding:4px;border-radius:11px; border: 1px solid var(--border);}
+.toggle-btn{
+  flex:1;padding:9px 14px;border-radius:8px;border:none;background:transparent;
+  cursor:pointer;font-weight:600;font-size:13.5px;text-align:center;color:var(--muted);
+  transition:all .15s ease;
+}
+.toggle-btn.active{background:var(--surface-2);color:var(--ink);box-shadow:var(--shadow-xs); border:1px solid var(--border-strong);}
+.toggle-btn.yes.active{background:var(--surface-2);color:var(--ink);box-shadow:var(--shadow-xs); border:1px solid var(--border-strong);}
+.toggle-btn.no.active{background:var(--teal);color:#fff;box-shadow:var(--glow-primary);}
+.conditional{display:none;margin-top:10px;}
+.conditional.show{display:block;}
+textarea{min-height:84px;resize:vertical;font-family:var(--font-body);line-height:1.55;}
+.form-actions{
+  display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:4px;
+  background:var(--surface);border:1px solid var(--border);border-radius:18px;
+  padding:16px 20px 16px 22px;box-shadow:var(--shadow-sm);
+  position:sticky;bottom:14px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}
+.required-note{color:var(--muted);font-size:12px;}
+.form-actions .btn-primary.wide{border-radius:999px;padding:12px 26px;}
+.toast{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--surface);color:var(--ink);padding:13px 24px;border-radius:11px;font-size:13.5px;font-weight:500;
+  border: 1px solid var(--teal-dark);
+  opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.2,.8,.3,1);z-index:50;box-shadow:var(--glow-primary);
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ---------- Admin tabs ---------- */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:28px;}
+.tab-btn{
+  background:transparent;border:none;padding:11px 4px;margin-right:28px;font-family:var(--font-body);
+  font-size:14.5px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;
+  transition:color .2s ease, border-color .2s ease;
+}
+.tab-btn:hover{color:var(--teal-dark);}
+.tab-btn.active{color:var(--teal);border-color:var(--teal); text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:12px;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--shadow-xs);}
+.stat-card .num{font-family:var(--font-display);font-size:34px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
+.stat-card .lbl{color:var(--muted);font-size:12.5px;margin-top:4px;font-weight:500;}
+.stat-card.amber .num{color:var(--amber);}
+.stat-card.brick .num{color:var(--brick);}
+.stat-card.teal .num{color:var(--teal-dark); text-shadow: 0 0 12px rgba(139, 92, 246, 0.4);}
+
+.leader-add-row{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;align-items:flex-end;}
+.leader-add-row .field{flex:1;min-width:220px;margin-bottom:0;}
+table.data-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-xs);}
+table.data-table th{
+  text-align:left;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);
+  padding:12px 16px;background:var(--surface-2);font-weight:600; border-bottom: 1px solid var(--border);
+}
+table.data-table td{padding:13px 16px;border-bottom:1px solid var(--border);font-size:13.5px;vertical-align:middle;}
+table.data-table tbody tr:last-child td { border-bottom: none; }
+table.data-table tbody tr{transition:background .12s ease;}
+table.data-table tbody tr:hover{background:var(--surface-2);}
+.code-pill{font-family:var(--font-mono);background:var(--surface-sunken);border:1px solid var(--border-strong);color:var(--teal-dark);padding:4px 11px;border-radius:7px;letter-spacing:.08em;font-size:12.5px;font-weight:600;}
+.icon-btn{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:6px 11px;cursor:pointer;font-size:12px;color:var(--muted);font-weight:600;transition:all .2s ease;}
+.icon-btn:hover{border-color:var(--teal);color:var(--ink);background:var(--teal-tint);}
+.icon-btn.copy:hover{border-color:var(--teal);color:var(--ink);background:var(--teal-tint);}
+
+.filters-row{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;background:var(--surface-sunken);padding:10px;border-radius:12px; border: 1px solid var(--border);}
+.filters-row select, .filters-row input{
+  font-family:var(--font-body);font-size:13px;padding:9px 12px;border:1px solid var(--border);
+  border-radius:8px;background:var(--surface); color: var(--ink); transition:border-color .2s ease;
+}
+.filters-row select:focus, .filters-row input:focus{outline:none;border-color:var(--teal);box-shadow: 0 0 0 2px var(--teal-tint);}
+
+/* modal */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;
+  padding:30px;z-index:100;
+}
+.modal-overlay.show{display:flex;}
+.modal-box{
+  background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius);max-width:640px;width:100%;max-height:86vh;
+  overflow-y:auto;padding:32px 34px;position:relative;box-shadow:var(--shadow-lg);
+}
+.modal-close{
+  position:absolute;top:16px;right:16px;background:var(--surface-2);border:1px solid var(--border);border-radius:50%;
+  width:32px;height:32px;font-size:16px;cursor:pointer;color:var(--muted);transition:all .2s ease;
+}
+.modal-close:hover{background:var(--teal);color:#fff; border-color:var(--teal);}
+.modal-box h3{font-family:var(--font-display);font-size:23px;margin:0 0 4px;font-weight:600;}
+.modal-sub{color:var(--muted);font-size:13px;margin-bottom:22px;}
+.detail-row{margin-bottom:17px;}
+.detail-row .dlabel{font-weight:600;font-size:11.5px;color:var(--teal-dark);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;font-family:var(--font-mono);}
+.detail-row .dval{font-size:14px;line-height:1.6;white-space:pre-wrap; color:var(--ink);}
+.modal-footer{display:flex;justify-content:flex-end;gap:10px;margin-top:26px;padding-top:20px;border-top:1px solid var(--border);}
+
+footer.app-footer{padding:18px 28px;text-align:center;color:var(--muted);font-size:11.5px;border-top:1px solid var(--border); background: var(--bg);}
+
+/* ---------- Alert banner (leader: colaboradores sem feedback) ---------- */
+.alert-banner{
+  display:flex;align-items:flex-start;gap:14px;
+  background:var(--brick-tint);border:1px solid rgba(248,113,113,.35);border-radius:var(--radius-sm);
+  padding:16px 18px;margin-bottom:20px;
+}
+.alert-banner .alert-icon{font-size:19px;line-height:1;flex-shrink:0;}
+.alert-banner .alert-text{font-size:13.5px;line-height:1.55;color:var(--ink);}
+.alert-banner .alert-text strong{color:var(--brick);}
+
+/* ---------- Motivational quote ---------- */
+.quote-card{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:15px 18px;margin-bottom:24px;
+}
+.quote-card p{margin:0;font-size:13.5px;font-style:italic;color:var(--ink);line-height:1.5;}
+.quote-card p::before{content:"\201C ";color:var(--teal-dark);font-style:normal;}
+.quote-refresh{
+  background:var(--surface-2);border:1px solid var(--border);color:var(--muted);border-radius:8px;
+  width:30px;height:30px;flex-shrink:0;cursor:pointer;font-size:14px;transition:all .2s ease;
+}
+.quote-refresh:hover{border-color:var(--teal);color:var(--teal-dark);background:var(--teal-tint);}
+
+/* ---------- Charts & rankings (admin overview) ---------- */
+.chart-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:16px;margin-bottom:8px;}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow-xs);}
+.chart-card h4{font-family:var(--font-display);font-size:14.5px;font-weight:600;margin:0 0 14px;}
+.chart-card .chart-wrap{position:relative;height:220px;}
+.chart-empty{color:var(--muted);font-size:13px;text-align:center;padding:60px 10px;}
+
+.rank-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:8px;}
+.rank-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow-xs);}
+.rank-card h4{font-family:var(--font-display);font-size:13.5px;font-weight:600;margin:0 0 12px;color:var(--ink);}
+.rank-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;}
+.rank-list li{display:flex;align-items:center;gap:10px;font-size:13px;}
+.rank-list .rank-n{
+  font-family:var(--font-mono);font-size:11px;color:var(--teal-dark);background:var(--teal-tint);
+  width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:600;
+}
+.rank-list .rank-name{flex:1;color:var(--ink);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.rank-list .rank-val{font-family:var(--font-mono);font-size:11.5px;color:var(--muted);flex-shrink:0;}
+.rank-empty{color:var(--muted);font-size:12.5px;}
+
+/* ---------- Rating selector (4-point scale: Ótimo/Bom/Médio/Ruim) ---------- */
+.rating-row{display:flex;gap:6px;flex-wrap:wrap;}
+.rating-btn{
+  flex:1;min-width:90px;padding:11px 10px;border-radius:11px;border:1px solid var(--border);background:var(--surface-sunken);
+  cursor:pointer;font-weight:600;font-size:13px;text-align:center;color:var(--muted);transition:all .15s ease;
+}
+.rating-btn:hover{border-color:var(--border-strong);}
+.rating-btn[data-r="otimo"].active{background:var(--sage-tint);color:var(--sage);border-color:rgba(52,211,153,.4);}
+.rating-btn[data-r="bom"].active{background:var(--teal-tint);color:var(--teal-dark);border-color:rgba(139,92,246,.4);}
+.rating-btn[data-r="medio"].active{background:var(--amber-tint);color:var(--amber);border-color:rgba(251,191,36,.4);}
+.rating-btn[data-r="ruim"].active{background:var(--brick-tint);color:var(--brick);border-color:rgba(248,113,113,.4);}
+.rating-pill{font-size:11px;padding:4px 10px 4px 8px;border-radius:999px;font-weight:600;letter-spacing:.02em;display:inline-flex;align-items:center;gap:5px;border:1px solid transparent;}
+.rating-pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0;}
+.rating-pill.otimo{background:var(--sage-tint);color:var(--sage);border-color:rgba(52,211,153,.2);}
+.rating-pill.bom{background:var(--teal-tint);color:var(--teal-dark);border-color:rgba(139,92,246,.2);}
+.rating-pill.medio{background:var(--amber-tint);color:var(--amber);border-color:rgba(251,191,36,.2);}
+.rating-pill.ruim{background:var(--brick-tint);color:var(--brick);border-color:rgba(248,113,113,.2);}
+
+/* ---------- Employee evolution mini stats ---------- */
+.mini-stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0;}
+.mini-stat{background:var(--surface-sunken);border:1px solid var(--border);border-radius:12px;padding:12px 14px;}
+.mini-stat .mlbl{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:5px;}
+.mini-stat .mval{font-weight:600;font-size:13.5px;color:var(--ink);}
+.trend-up{color:var(--sage);}
+.trend-down{color:var(--brick);}
+.trend-flat{color:var(--teal-dark);}
+.mini-history{display:flex;flex-direction:column;gap:8px;margin-top:6px;}
+.mini-history-item{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;
+  background:var(--surface-sunken);border:1px solid var(--border);border-radius:10px;cursor:pointer;font-size:12.5px;transition:all .15s ease;
+}
+.mini-history-item:hover{border-color:var(--border-strong);background:var(--surface-2);}
+
+/* ---------- Employee select / inline add (leader form) ---------- */
+.emp-select-row{display:flex;gap:8px;}
+.emp-select-row select{flex:1;}
+.dept-hint{color:var(--muted);font-size:12.5px;margin-top:8px;}
+.inline-add-emp{display:none;gap:8px;margin-top:10px;flex-wrap:wrap;}
+.inline-add-emp.show{display:flex;}
+.inline-add-emp input{flex:1;min-width:140px;}
+
+/* ---------- Meu time (leader) / Colaboradores (admin) ---------- */
+.employee-row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;}
+.employee-row .einfo .ename{font-weight:600;font-size:14.5px;}
+.employee-row .einfo .edept{color:var(--muted);font-size:12.5px;margin-top:2px;}
+.employee-row .eactions{display:flex;align-items:center;gap:8px;}
+
+/* ---------- Question admin ---------- */
+.q-type-row{display:flex;gap:8px;}
+.q-type-row .toggle-btn{flex:1;}
+.order-btns{display:flex;flex-direction:column;gap:2px;}
+.order-btns button{
+  background:var(--surface-2);border:1px solid var(--border);color:var(--muted);border-radius:5px;
+  width:22px;height:18px;font-size:10px;cursor:pointer;line-height:1;padding:0;
+}
+.order-btns button:hover:not(:disabled){border-color:var(--teal);color:var(--teal-dark);}
+.order-btns button:disabled{opacity:.3;cursor:default;}
+.status-toggle{
+  border:none;border-radius:999px;padding:5px 12px;font-size:11.5px;font-weight:600;cursor:pointer;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.status-toggle.on{background:var(--sage-tint);color:var(--sage);}
+.status-toggle.off{background:var(--surface-2);color:var(--muted);}
+.status-toggle::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;}
+
+@media(max-width:720px){
+  .dash{padding:24px 18px 50px;}
+  .form-grid-2{grid-template-columns:1fr;}
+  .q-block{padding:18px 16px;}
+  .stat-grid{grid-template-columns:1fr 1fr;}
+  .topbar{padding:14px 18px;}
+  .modal-box{padding:26px 20px;}
+  .gate-hero h2{font-size:34px;}
+  .form-actions{flex-wrap:wrap;position:static;}
+  .chart-grid{grid-template-columns:1fr;}
+  .rank-grid{grid-template-columns:1fr;}
+  .mini-stat-grid{grid-template-columns:1fr 1fr;}
+  .emp-select-row{flex-direction:column;}
+  .rating-row{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+<div class="app-shell">
+
+  <header class="topbar">
+    <div class="brand">
+      <!-- Imagem adicionada com mix-blend-mode no CSS -->
+      <span class="sg-logo sg-logo--compact">SAINT GERMAIN</span>
+      <small class="brand-tagline">Conversas entre líderes e liderados</small>
+    </div>
+    <div class="topbar-right" id="topbarRight"></div>
+  </header>
+
+  <main id="view">
+
+    <!-- GATE -->
+    <section class="screen active" id="screen-gate">
+      <div class="gate-wrap">
+        <!-- Imagem substituindo o badge heroi -->
+        <span class="sg-logo sg-logo--hero">SAINT GERMAIN</span>
+        <div class="gate-hero">
+          <h2>Onde a escuta vira desenvolvimento.</h2>
+          <p>Registre e acompanhe as conversas 1:1 entre líderes e seus liderados, para alinhar desempenho, apoiar o time e dar visibilidade ao RH.</p>
+        </div>
+        <div class="gate-cards">
+          <div class="gate-card" onclick="showScreen('screen-leader-login')">
+            <div class="icon-row"><span class="icon-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"></path></svg>
+            </span></div>
+            <h3>Sou líder</h3>
+            <p>Entre com seu código de acesso para registrar e consultar os 1:1s do seu time.</p>
+          </div>
+          <div class="gate-card" onclick="showScreen('screen-admin-login')">
+            <div class="icon-row"><span class="icon-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"></path></svg>
+            </span></div>
+            <h3>Sou administrador(a)</h3>
+            <p>Gerencie os líderes, gere códigos de acesso e acompanhe todos os registros da empresa.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADER LOGIN -->
+    <section class="screen" id="screen-leader-login">
+      <div class="login-wrap">
+        <div class="login-card">
+          <a class="back-link" onclick="showScreen('screen-gate')">← Voltar</a>
+          <h2>Área do líder</h2>
+          <p class="sub">Informe o código de acesso fornecido pelo administrador.</p>
+          <div class="field code">
+            <label>Código de acesso</label>
+            <input type="text" id="leaderCodeInput" placeholder="Ex.: MAR-482" maxlength="20">
+          </div>
+          <div class="error-msg" id="leaderLoginError">Código não encontrado. Verifique com o administrador.</div>
+          <button class="btn-primary" onclick="doLeaderLogin()">Entrar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN LOGIN -->
+    <section class="screen" id="screen-admin-login">
+      <div class="login-wrap">
+        <div class="login-card">
+          <a class="back-link" onclick="showScreen('screen-gate')">← Voltar</a>
+          <h2>Área do administrador</h2>
+          <p class="sub">Acesso restrito ao RH / gestão da plataforma.</p>
+          <div class="field">
+            <label>Senha de administrador</label>
+            <input type="password" id="adminPassInput" placeholder="••••••••">
+          </div>
+          <div class="error-msg" id="adminLoginError">Senha incorreta.</div>
+          <button class="btn-primary" onclick="doAdminLogin()">Entrar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADER DASHBOARD -->
+    <section class="screen" id="screen-leader-dash">
+      <div class="dash">
+        <span class="sg-logo sg-logo--compact" style="margin-bottom:18px;">SAINT GERMAIN</span>
+        <div class="dash-head">
+          <div>
+            <h2 id="leaderGreeting">Olá</h2>
+            <p>Registre aqui os principais pontos da conversa com os seus liderados. Isso nos ajuda a acompanhar o desenvolvimento do time e apoiar vocês da melhor forma possível.</p>
+          </div>
+          <button class="btn-primary wide" onclick="openLeaderForm()">+ Novo registro de 1:1</button>
+        </div>
+
+        <div id="leaderAlertWrap"></div>
+        <div id="leaderQuoteWrap"></div>
+
+        <div class="divider-row"><div class="mini-mark"><span></span><span></span></div><h3>Meu time</h3></div>
+        <div class="btn-row" style="margin-bottom:12px;">
+          <button class="btn-secondary" onclick="openEmployeeFormModal()">+ Adicionar colaborador</button>
+        </div>
+        <div class="record-list" id="leaderTeamList"></div>
+
+        <div class="divider-row"><div class="mini-mark"><span></span><span></span></div><h3>Seus registros</h3></div>
+        <div class="record-list" id="leaderRecordList"></div>
+      </div>
+    </section>
+
+    <!-- LEADER FORM -->
+    <section class="screen" id="screen-leader-form">
+      <div class="dash">
+        <a class="back-link" onclick="showScreen('screen-leader-dash')">← Voltar aos registros</a>
+        <div class="dash-head">
+          <div>
+            <h2>Novo registro de 1:1</h2>
+            <p>Preencha os pontos discutidos na conversa com o colaborador. Todos os campos são obrigatórios.</p>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div class="form-grid-2">
+            <div class="q-block">
+              <div class="q-block-head">
+                <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="3"></rect><path d="M3 9.5h18M8 2.5v4M16 2.5v4"></path></svg></span>
+                <label>Data *</label>
+              </div>
+              <input type="date" id="f_date">
+            </div>
+            <div class="q-block">
+              <div class="q-block-head">
+                <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"></path></svg></span>
+                <label>Colaborador *</label>
+              </div>
+              <div class="emp-select-row">
+                <select id="f_employee_select" onchange="handleEmployeeSelectChange()">
+                  <option value="">Selecione...</option>
+                </select>
+              </div>
+              <div class="dept-hint" id="f_employee_dept_hint"></div>
+              <div class="inline-add-emp" id="inlineAddEmp">
+                <input type="text" id="f_new_emp_name" placeholder="Nome do novo colaborador">
+                <input type="text" id="f_new_emp_dept" placeholder="Área/Departamento">
+                <button type="button" class="btn-secondary" onclick="quickAddEmployee()">Adicionar à equipe</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="dynamicQuestions"></div>
+
+          <div class="q-block">
+            <div class="q-block-head">
+              <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15a8 8 0 0 1 16 0"></path><path d="M12 15l4-4"></path><circle cx="12" cy="15" r="1" fill="currentColor" stroke="none"></circle></svg></span>
+                <label>Nota final do 1:1 *<span class="hint">Avaliação geral do momento do colaborador nesta conversa</span></label>
+            </div>
+            <div class="rating-row" id="ratingRow">
+              <button type="button" class="rating-btn" data-r="ruim" onclick="setRating('ruim')">Ruim</button>
+              <button type="button" class="rating-btn" data-r="medio" onclick="setRating('medio')">Médio</button>
+              <button type="button" class="rating-btn" data-r="bom" onclick="setRating('bom')">Bom</button>
+              <button type="button" class="rating-btn" data-r="otimo" onclick="setRating('otimo')">Ótimo</button>
+            </div>
+          </div>
+
+          <div class="q-block">
+            <div class="q-block-head">
+              <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="3"></rect><path d="M3 9.5h18M8 2.5v4M16 2.5v4"></path></svg></span>
+              <label>Data da próxima reunião<span class="hint">Opcional — ajuda a planejar o próximo 1:1</span></label>
+            </div>
+            <input type="date" id="f_next_meeting">
+          </div>
+
+          <div class="error-msg" id="formError">Preencha todos os campos obrigatórios antes de enviar.</div>
+          <div class="form-actions">
+            <span class="required-note">* campos obrigatórios</span>
+            <button class="btn-primary wide" onclick="submitRecord()">Enviar registro</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN DASHBOARD -->
+    <section class="screen" id="screen-admin-dash">
+      <div class="dash">
+        <span class="sg-logo sg-logo--compact" style="margin-bottom:18px;">SAINT GERMAIN</span>
+        <div class="dash-head">
+          <div>
+            <h2>Painel do administrador</h2>
+            <p>Visão geral dos líderes, códigos de acesso e registros de 1:1 realizados.</p>
+          </div>
+          <button class="btn-ghost-small" onclick="refreshAdminData()">↻ Atualizar dados</button>
+        </div>
+
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="tab-overview" onclick="switchTab('tab-overview')">Visão geral</button>
+          <button class="tab-btn" data-tab="tab-leaders" onclick="switchTab('tab-leaders')">Líderes</button>
+          <button class="tab-btn" data-tab="tab-employees" onclick="switchTab('tab-employees')">Colaboradores</button>
+          <button class="tab-btn" data-tab="tab-questions" onclick="switchTab('tab-questions')">Perguntas</button>
+          <button class="tab-btn" data-tab="tab-records" onclick="switchTab('tab-records')">Registros</button>
+        </div>
+
+        <div class="tab-panel active" id="tab-overview">
+          <div class="stat-grid">
+            <div class="stat-card teal"><div class="num" id="statTotal">0</div><div class="lbl">1:1s registrados</div></div>
+            <div class="stat-card"><div class="num" id="statLeaders">0</div><div class="lbl">Líderes ativos</div></div>
+            <div class="stat-card"><div class="num" id="statEmployees">0</div><div class="lbl">Colaboradores</div></div>
+            <div class="stat-card teal"><div class="num" id="statMonth">0</div><div class="lbl">Feedbacks realizados no mês</div></div>
+            <div class="stat-card"><div class="num" id="statAvg">—</div><div class="lbl">Média geral da empresa</div></div>
+            <div class="stat-card amber"><div class="num" id="statPending">0</div><div class="lbl">Feedbacks pendentes (+15 dias)</div></div>
+            <div class="stat-card brick"><div class="num" id="statOverdue">0</div><div class="lbl">Colaboradores +30 dias sem feedback</div></div>
+            <div class="stat-card amber"><div class="num" id="statAttention">0</div><div class="lbl">Pontos de atenção sinalizados</div></div>
+            <div class="stat-card brick"><div class="num" id="statOverload">0</div><div class="lbl">Relatos de sobrecarga / conflito</div></div>
+          </div>
+
+          <div class="divider-row"><div class="mini-mark"><span></span><span></span></div><h3>Evolução e distribuição</h3></div>
+          <div class="chart-grid">
+            <div class="chart-card">
+              <h4>Evolução geral da empresa — média por mês</h4>
+              <div class="chart-wrap"><canvas id="companyEvolutionChart"></canvas></div>
+            </div>
+            <div class="chart-card">
+              <h4>Distribuição das notas de feedback</h4>
+              <div class="chart-wrap"><canvas id="distributionChart"></canvas></div>
+            </div>
+          </div>
+
+          <div class="divider-row"><div class="mini-mark"><span></span><span></span></div><h3>Rankings</h3></div>
+          <div class="rank-grid">
+            <div class="rank-card">
+              <h4>Melhores médias por área</h4>
+              <ol class="rank-list" id="rankTeams"></ol>
+            </div>
+            <div class="rank-card">
+              <h4>Líderes com mais 1:1s realizados</h4>
+              <ol class="rank-list" id="rankLeaders"></ol>
+            </div>
+            <div class="rank-card">
+              <h4>Colaboradores que mais evoluíram</h4>
+              <ol class="rank-list" id="rankImproved"></ol>
+            </div>
+            <div class="rank-card">
+              <h4>Há mais tempo sem feedback</h4>
+              <ol class="rank-list" id="rankOverdue"></ol>
+            </div>
+          </div>
+
+          <div class="divider-row"><div class="mini-mark"><span></span><span></span></div><h3>Últimos registros</h3></div>
+          <div class="record-list" id="overviewRecent"></div>
+        </div>
+
+        <div class="tab-panel" id="tab-leaders">
+          <div class="leader-add-row">
+            <div class="field">
+              <label>Nome do líder</label>
+              <input type="text" id="newLeaderName" placeholder="Nome completo do líder">
+            </div>
+            <button class="btn-primary wide" onclick="addLeader()">+ Adicionar líder</button>
+          </div>
+          <div id="leaderTableWrap"></div>
+        </div>
+
+        <div class="tab-panel" id="tab-employees">
+          <div class="filters-row">
+            <select id="filterEmpLeader" onchange="renderEmployeesTab()">
+              <option value="">Todos os líderes</option>
+            </select>
+            <input type="text" id="filterEmpName" placeholder="Buscar colaborador..." oninput="renderEmployeesTab()">
+          </div>
+          <div id="employeeTableWrap"></div>
+        </div>
+
+        <div class="tab-panel" id="tab-questions">
+          <div class="q-block" style="max-width:640px;margin-bottom:20px;">
+            <div class="q-block-head">
+              <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"></path></svg></span>
+              <label>Nova pergunta</label>
+            </div>
+            <textarea id="newQuestionText" placeholder="Digite o texto da pergunta que os líderes irão responder..." style="min-height:60px;"></textarea>
+            <div class="q-type-row" style="margin-top:10px;">
+              <button type="button" class="toggle-btn active" id="newQTypeText" onclick="setNewQuestionType('text')">Texto livre</button>
+              <button type="button" class="toggle-btn" id="newQTypeYesno" onclick="setNewQuestionType('yesno')">Sim / Não (com detalhe)</button>
+            </div>
+            <div class="btn-row" style="margin-top:14px;">
+              <button class="btn-primary wide" onclick="addQuestion()">+ Adicionar pergunta</button>
+            </div>
+          </div>
+          <div id="questionTableWrap"></div>
+        </div>
+
+        <div class="tab-panel" id="tab-records">
+          <div class="filters-row">
+            <select id="filterLeader" onchange="renderAdminRecords()">
+              <option value="">Todos os líderes</option>
+            </select>
+            <input type="text" id="filterEmployee" placeholder="Buscar colaborador..." oninput="renderAdminRecords()">
+            <input type="date" id="filterDate" onchange="renderAdminRecords()">
+            <select id="filterRating" onchange="renderAdminRecords()">
+              <option value="">Todas as notas</option>
+              <option value="otimo">Ótimo</option>
+              <option value="bom">Bom</option>
+              <option value="medio">Médio</option>
+              <option value="ruim">Ruim</option>
+            </select>
+            <button class="icon-btn copy" onclick="clearFilters()">Limpar filtros</button>
+            <button class="icon-btn copy" onclick="exportCSV()">⭳ Exportar CSV</button>
+          </div>
+          <div class="record-list" id="adminRecordList"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">SAINT GERMAIN — plataforma interna de acompanhamento de conversas 1:1.</footer>
+</div>
+
+<!-- Record detail modal -->
+<div class="modal-overlay" id="recordModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- Employee evolution modal -->
+<div class="modal-overlay" id="employeeModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeEmployeeModal()">✕</button>
+    <div id="employeeModalContent"></div>
+  </div>
+</div>
+
+<!-- Employee add/edit modal (leader's team roster) -->
+<div class="modal-overlay" id="employeeFormModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeEmployeeFormModal()">✕</button>
+    <h3 id="employeeFormTitle">Adicionar colaborador</h3>
+    <p class="modal-sub">Cadastre um membro do seu time para acompanhar os 1:1s.</p>
+    <input type="hidden" id="empFormId">
+    <div class="field">
+      <label>Nome completo</label>
+      <input type="text" id="empFormName" placeholder="Nome do colaborador">
+    </div>
+    <div class="field">
+      <label>Área / Departamento</label>
+      <input type="text" id="empFormDept" placeholder="Ex.: Comercial, Operações, Financeiro...">
+    </div>
+    <div class="error-msg" id="employeeFormError">Informe o nome e a área do colaborador.</div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeEmployeeFormModal()">Cancelar</button>
+      <button class="btn-primary wide" onclick="saveEmployeeForm()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Question add/edit modal (admin) -->
+<div class="modal-overlay" id="questionFormModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeQuestionFormModal()">✕</button>
+    <h3>Editar pergunta</h3>
+    <p class="modal-sub">As alterações valem para os próximos 1:1s registrados pelos líderes.</p>
+    <input type="hidden" id="editQuestionId">
+    <div class="field">
+      <label>Texto da pergunta</label>
+      <textarea id="editQuestionText" style="min-height:70px;"></textarea>
+    </div>
+    <div class="field">
+      <label>Tipo de resposta</label>
+      <div class="q-type-row">
+        <button type="button" class="toggle-btn" id="editQTypeText" onclick="setEditQuestionType('text')">Texto livre</button>
+        <button type="button" class="toggle-btn" id="editQTypeYesno" onclick="setEditQuestionType('yesno')">Sim / Não (com detalhe)</button>
+      </div>
+    </div>
+    <div class="error-msg" id="questionFormError">Informe o texto da pergunta.</div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="closeQuestionFormModal()">Cancelar</button>
+      <button class="btn-primary wide" onclick="saveQuestionForm()">Salvar alterações</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+<script>
+/* ============ State ============ */
+const ADMIN_PASSWORD = "1234"; // senha temporária, troque depois
+let leaders = [];
+let records = [];
+let employees = [];
+let questions = [];
+let currentLeader = null;
+let currentToggle = {};
+let currentRating = null;
+let newQuestionType = 'text';
+let editQuestionType = 'text';
+let chartCompanyEvolution = null;
+let chartDistribution = null;
+let chartEmployeeEvolution = null;
+
+/* ============ Constants ============ */
+const DEFAULT_QUESTIONS = [
+  { text: "Como está sendo o desempenho do colaborador na execução das atividades?", type: "text", kind: null },
+  { text: "O colaborador está cumprindo os prazos e compromissos acordados?", type: "yesno", kind: "deadlines" },
+  { text: "Houve algum ponto de atenção ou comportamento que precisa ser detalhado?", type: "yesno", kind: "attention" },
+  { text: "Há alguma habilidade que você identificou como oportunidade de melhoria?", type: "text", kind: null },
+  { text: "Foi discutido algum plano de ação ou próximo passo para melhorar o desenvolvimento do colaborador?", type: "text", kind: "actionplan" },
+  { text: "O colaborador relatou alguma situação de sobrecarga, conflito e/ou insatisfação?", type: "text", kind: "overload" },
+  { text: "Quais foram os pontos acordados de melhoria e desempenho para o próximo 1:1?", type: "text", kind: null },
+  { text: "Há algo que o RH precisa saber ou apoiar?", type: "text", kind: null }
+];
+
+const MOTIVATIONAL_QUOTES = [
+  "Feedback frequente fortalece pessoas e equipes.",
+  "Uma conversa hoje evita problemas amanhã.",
+  "Desenvolver pessoas é a principal missão de um líder.",
+  "Grandes equipes são construídas através de conversas sinceras.",
+  "Cada feedback é uma oportunidade de crescimento.",
+  "Liderar também significa ouvir.",
+  "Reconhecer conquistas e orientar melhorias gera resultados.",
+  "Seu time cresce quando recebe atenção constante."
+];
+
+const RATING_META = {
+  otimo: { label: "Ótimo", value: 4, colorVar: "--sage" },
+  bom:   { label: "Bom",   value: 3, colorVar: "--teal" },
+  medio: { label: "Médio", value: 2, colorVar: "--amber" },
+  ruim:  { label: "Ruim",  value: 1, colorVar: "--brick" }
+};
+const RATING_ORDER = ["ruim", "medio", "bom", "otimo"];
+const RATING_LABEL_BY_VALUE = { 1: "Ruim", 2: "Médio", 3: "Bom", 4: "Ótimo" };
+const MONTH_ABBR = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+
+/* ============ Utils ============ */
+function escapeHtml(str){
+  return String(str ?? "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+function fmtDate(d){
+  if(!d) return "";
+  const parts = d.split("-");
+  if(parts.length===3) return `${parts[2]}/${parts[1]}/${parts[0]}`;
+  return d;
+}
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2600);
+}
+function genCode(name){
+  const base = (name||"XX").trim().split(/\s+/)[0].slice(0,3).toUpperCase().padEnd(3,'X');
+  let code;
+  do{
+    const num = Math.floor(100 + Math.random()*900);
+    code = `${base}-${num}`;
+  } while(leaders.some(l=>l.code===code));
+  return code;
+}
+function isNegativeText(t){
+  const s = (t||"").trim().toLowerCase();
+  if(!s) return true;
+  return /^(n[aã]o|n\/a|nenhum[ao]?|sem relatos?)\b.{0,10}$/.test(s);
+}
+function cssVar(name){
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+function todayISO(){
+  return new Date().toISOString().slice(0,10);
+}
+function daysSince(dateStr){
+  const then = new Date(dateStr + "T00:00:00").getTime();
+  return Math.max(0, Math.floor((Date.now() - then) / 86400000));
+}
+function daysSinceTimestamp(ts){
+  if(!ts) return 0;
+  return Math.max(0, Math.floor((Date.now() - ts) / 86400000));
+}
+function monthLabel(key){
+  const parts = key.split('-');
+  const y = parts[0], m = parts[1];
+  return `${MONTH_ABBR[parseInt(m,10)-1]}/${y.slice(2)}`;
+}
+function nearestRatingLabel(avg){
+  const rounded = Math.round(avg);
+  return RATING_LABEL_BY_VALUE[Math.min(4,Math.max(1,rounded))];
+}
+
+/* ============ Screen / view control ============ */
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function renderTopbar(){
+  const el = document.getElementById('topbarRight');
+  if(currentLeader){
+    el.innerHTML = `<span class="role-badge">Líder</span>
+      <span style="font-size:13.5px;font-weight:600;">${escapeHtml(currentLeader.name)}</span>
+      <button class="btn-ghost-small" onclick="logout()">Sair</button>`;
+  } else if (window.__isAdmin){
+    el.innerHTML = `<span class="role-badge admin">Administrador</span>
+      <button class="btn-ghost-small" onclick="logout()">Sair</button>`;
+  } else {
+    el.innerHTML = "";
+  }
+}
+function logout(){
+  currentLeader = null;
+  window.__isAdmin = false;
+  renderTopbar();
+  showScreen('screen-gate');
+}
+
+/* ============ Storage ============ */
+async function loadData(){
+  try{
+    const r = await window.storage.get('leaders', true);
+    leaders = r ? JSON.parse(r.value) : [];
+  }catch(e){ leaders = []; }
+  try{
+    const r = await window.storage.get('records', true);
+    records = r ? JSON.parse(r.value) : [];
+  }catch(e){ records = []; }
+  try{
+    const r = await window.storage.get('employees', true);
+    employees = r ? JSON.parse(r.value) : [];
+  }catch(e){ employees = []; }
+  try{
+    const r = await window.storage.get('questions', true);
+    questions = r ? JSON.parse(r.value) : [];
+  }catch(e){ questions = []; }
+  await runMigration();
+}
+async function saveLeaders(){
+  try{ await window.storage.set('leaders', JSON.stringify(leaders), true); }
+  catch(e){ showToast('Erro ao salvar líderes. Tente novamente.'); }
+}
+async function saveRecords(){
+  try{ await window.storage.set('records', JSON.stringify(records), true); }
+  catch(e){ showToast('Erro ao salvar o registro. Tente novamente.'); }
+}
+async function saveEmployees(){
+  try{ await window.storage.set('employees', JSON.stringify(employees), true); }
+  catch(e){ showToast('Erro ao salvar colaboradores. Tente novamente.'); }
+}
+async function saveQuestions(){
+  try{ await window.storage.set('questions', JSON.stringify(questions), true); }
+  catch(e){ showToast('Erro ao salvar perguntas. Tente novamente.'); }
+}
+
+/* One-time, idempotent migration: seeds the default question set (matching the
+   original hard-coded form) and backfills employeeId on records created before
+   this update, creating employee records from the free-text names already in use. */
+async function runMigration(){
+  let metaFlag = null;
+  try{
+    const r = await window.storage.get('meta:v2_migrated', true);
+    metaFlag = r ? r.value : null;
+  }catch(e){ metaFlag = null; }
+  if(metaFlag === '1') return;
+
+  let changedEmployees = false, changedRecords = false, changedQuestions = false;
+
+  records.forEach((r,i)=>{
+    if(r.employeeId || !r.employee) return;
+    const nm = r.employee.trim().toLowerCase();
+    let emp = employees.find(e=>e.leaderId===r.leaderId && e.name.trim().toLowerCase()===nm);
+    if(!emp){
+      emp = { id:'emp_'+Date.now()+'_'+i+'_'+Math.floor(Math.random()*1000), name:r.employee, dept:r.dept||'', leaderId:r.leaderId, createdAt:r.createdAt||Date.now() };
+      employees.push(emp);
+      changedEmployees = true;
+    }
+    r.employeeId = emp.id;
+    changedRecords = true;
+  });
+
+  if(questions.length===0){
+    questions = DEFAULT_QUESTIONS.map((q,i)=>({ id:'q_'+Date.now()+'_'+i, text:q.text, type:q.type, kind:q.kind, order:i+1, active:true, createdAt:Date.now() }));
+    changedQuestions = true;
+  }
+
+  if(changedEmployees) await saveEmployees();
+  if(changedRecords) await saveRecords();
+  if(changedQuestions) await saveQuestions();
+  try{ await window.storage.set('meta:v2_migrated', '1', true); }catch(e){}
+}
+
+/* ============ Leader / Admin login ============ */
+function doLeaderLogin(){
+  const code = document.getElementById('leaderCodeInput').value.trim().toUpperCase();
+  const err = document.getElementById('leaderLoginError');
+  const found = leaders.find(l => l.code.toUpperCase() === code);
+  if(!found){
+    err.classList.add('show');
+    return;
+  }
+  err.classList.remove('show');
+  currentLeader = found;
+  document.getElementById('leaderCodeInput').value = "";
+  renderTopbar();
+  document.getElementById('leaderGreeting').textContent = `Olá, ${found.name.split(' ')[0]}`;
+  renderLeaderDashboard();
+  showScreen('screen-leader-dash');
+}
+function doAdminLogin(){
+  const pass = document.getElementById('adminPassInput').value;
+  const err = document.getElementById('adminLoginError');
+  if(pass !== ADMIN_PASSWORD){
+    err.classList.add('show');
+    return;
+  }
+  err.classList.remove('show');
+  window.__isAdmin = true;
+  document.getElementById('adminPassInput').value = "";
+  renderTopbar();
+  renderAdminAll();
+  showScreen('screen-admin-dash');
+}
+
+/* ============ Employee helpers (shared) ============ */
+function myEmployees(){
+  if(!currentLeader) return [];
+  return employees.filter(e=>e.leaderId===currentLeader.id);
+}
+function recordEmployeeId(r){
+  if(r.employeeId) return r.employeeId;
+  const nm = (r.employee||"").trim().toLowerCase();
+  if(!nm) return null;
+  const match = employees.find(e => e.leaderId===r.leaderId && e.name.trim().toLowerCase()===nm);
+  return match ? match.id : null;
+}
+function employeeDaysSinceFeedback(emp){
+  const recs = records.filter(r => recordEmployeeId(r) === emp.id && r.date);
+  if(recs.length){
+    const latest = recs.reduce((max,r)=> r.date > max ? r.date : max, recs[0].date);
+    return daysSince(latest);
+  }
+  return daysSinceTimestamp(emp.createdAt);
+}
+function dayStatus(days){
+  if(days === null || days === undefined) return 'ok';
+  if(days <= 15) return 'ok';
+  if(days <= 30) return 'warn';
+  return 'risk';
+}
+function dayBadgeHtml(days){
+  const status = dayStatus(days);
+  const label = days === 0 ? 'Feedback hoje' : (days === 1 ? '1 dia sem feedback' : `${days} dias sem feedback`);
+  return `<span class="tag ${status}">${label}</span>`;
+}
+function employeeRecordsSorted(employeeId){
+  return records.filter(r=>recordEmployeeId(r)===employeeId && r.rating && r.date)
+    .sort((a,b)=> a.date<b.date ? -1 : (a.date>b.date ? 1 : (a.createdAt||0)-(b.createdAt||0)));
+}
+function employeeStats(employeeId){
+  const recs = employeeRecordsSorted(employeeId);
+  if(recs.length===0) return { avg:null, best:null, worst:null, trend:'insuficiente', delta:null, records:[] };
+  const values = recs.map(r=>RATING_META[r.rating].value);
+  const avg = values.reduce((s,v)=>s+v,0)/values.length;
+  let best = recs[0], worst = recs[0];
+  recs.forEach(r=>{
+    if(RATING_META[r.rating].value > RATING_META[best.rating].value) best = r;
+    if(RATING_META[r.rating].value < RATING_META[worst.rating].value) worst = r;
+  });
+  let trend = 'insuficiente', delta = null;
+  if(recs.length>=2){
+    const mid = Math.ceil(recs.length/2);
+    const firstHalf = values.slice(0, mid);
+    const secondHalf = values.slice(mid).length ? values.slice(mid) : firstHalf;
+    const a1 = firstHalf.reduce((s,v)=>s+v,0)/firstHalf.length;
+    const a2 = secondHalf.reduce((s,v)=>s+v,0)/secondHalf.length;
+    delta = a2 - a1;
+    trend = delta > 0.3 ? 'melhora' : (delta < -0.3 ? 'queda' : 'estavel');
+  }
+  return { avg, best, worst, trend, delta, records: recs };
+}
+
+/* ============ Leader dashboard ============ */
+function renderLeaderDashboard(){
+  renderAlertBanner();
+  renderMotivationalQuote();
+  renderMyTeam();
+  renderLeaderRecords();
+}
+function renderAlertBanner(){
+  const wrap = document.getElementById('leaderAlertWrap');
+  if(!wrap || !currentLeader) return;
+  const overdue = myEmployees().filter(e => dayStatus(employeeDaysSinceFeedback(e)) === 'risk');
+  if(overdue.length === 0){ wrap.innerHTML = ''; return; }
+  const word = overdue.length === 1 ? 'colaborador' : 'colaboradores';
+  wrap.innerHTML = `<div class="alert-banner">
+    <span class="alert-icon">⚠️</span>
+    <div class="alert-text"><strong>Atenção!</strong> Você possui <strong>${overdue.length} ${word}</strong> sem feedback há mais de 30 dias. Agende um One-on-One para manter o acompanhamento e o desenvolvimento da equipe.</div>
+  </div>`;
+}
+function renderMotivationalQuote(){
+  const wrap = document.getElementById('leaderQuoteWrap');
+  if(!wrap) return;
+  const quote = MOTIVATIONAL_QUOTES[Math.floor(Math.random()*MOTIVATIONAL_QUOTES.length)];
+  wrap.innerHTML = `<div class="quote-card"><p>${escapeHtml(quote)}</p><button class="quote-refresh" onclick="renderMotivationalQuote()" title="Outra frase">↻</button></div>`;
+}
+function renderMyTeam(){
+  const wrap = document.getElementById('leaderTeamList');
+  if(!wrap || !currentLeader) return;
+  const mine = myEmployees();
+  if(mine.length===0){
+    wrap.innerHTML = `<div class="empty-state"><strong>Nenhum colaborador cadastrado</strong>Adicione os membros do seu time para começar a registrar 1:1s e acompanhar os dias sem feedback.</div>`;
+    return;
+  }
+  const sorted = [...mine].sort((a,b)=> employeeDaysSinceFeedback(b) - employeeDaysSinceFeedback(a));
+  wrap.innerHTML = sorted.map(e=>{
+    const days = employeeDaysSinceFeedback(e);
+    return `<div class="record-card" onclick="openEmployeeEvolutionModal('${e.id}')">
+      <div class="employee-row">
+        <div class="einfo">
+          <div class="ename">${escapeHtml(e.name)}</div>
+          <div class="edept">${escapeHtml(e.dept)}</div>
+        </div>
+        <div class="eactions">${dayBadgeHtml(days)}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+function renderLeaderRecords(){
+  const wrap = document.getElementById('leaderRecordList');
+  const mine = records.filter(r=>r.leaderId===currentLeader.id).sort((a,b)=> b.createdAt - a.createdAt);
+  if(mine.length===0){
+    wrap.innerHTML = `<div class="empty-state"><strong>Nenhum registro ainda</strong>Comece registrando a primeira conversa 1:1 com seu time.</div>`;
+    return;
+  }
+  wrap.innerHTML = mine.map(r=>recordCardHtml(r,false)).join('');
+}
+function recordCardHtml(r, showLeader){
+  const tags = [];
+  if(r.answers){
+    const deadlinesQ = questions.find(q=>q.kind==='deadlines');
+    const attentionQ = questions.find(q=>q.kind==='attention');
+    const overloadQ = questions.find(q=>q.kind==='overload');
+    if(deadlinesQ){ const a=r.answers.find(x=>x.questionId===deadlinesQ.id); if(a && a.value==='nao') tags.push('<span class="tag risk">Prazo em atraso</span>'); }
+    if(attentionQ){ const a=r.answers.find(x=>x.questionId===attentionQ.id); if(a && a.value==='nao') tags.push('<span class="tag warn">Ponto de atenção</span>'); }
+    if(overloadQ){ const a=r.answers.find(x=>x.questionId===overloadQ.id); if(a && !isNegativeText(a.value)) tags.push('<span class="tag warn">Sobrecarga / conflito relatado</span>'); }
+    if(r.rating) tags.push(`<span class="rating-pill ${r.rating}">${RATING_META[r.rating].label}</span>`);
+  } else {
+    if(r.deadlines && r.deadlines.status==='nao') tags.push('<span class="tag risk">Prazo em atraso</span>');
+    if(r.attention && r.attention.status==='nao') tags.push('<span class="tag warn">Ponto de atenção</span>');
+    if(!isNegativeText(r.overload)) tags.push('<span class="tag warn">Sobrecarga / conflito relatado</span>');
+  }
+  const empName = r.employeeName || r.employee || '';
+  const deptName = r.dept || '';
+  return `<div class="record-card" onclick="openRecordModal('${r.id}')">
+      <div class="record-card-top">
+        <span class="name">${escapeHtml(empName)}${showLeader? ' <span style="color:var(--muted);font-weight:400;">· '+escapeHtml(r.leaderName)+'</span>':''}</span>
+        <span class="date">${fmtDate(r.date)}</span>
+      </div>
+      <div class="dept">${escapeHtml(deptName)}</div>
+      ${tags.length? `<div class="tags">${tags.join('')}</div>` : ''}
+    </div>`;
+}
+
+/* ============ Employee CRUD (leader's team roster) ============ */
+function openEmployeeFormModal(editId){
+  document.getElementById('empFormId').value = editId || '';
+  document.getElementById('employeeFormTitle').textContent = editId ? 'Editar colaborador' : 'Adicionar colaborador';
+  document.getElementById('employeeFormError').classList.remove('show');
+  if(editId){
+    const e = employees.find(x=>x.id===editId);
+    document.getElementById('empFormName').value = e ? e.name : '';
+    document.getElementById('empFormDept').value = e ? e.dept : '';
+  } else {
+    document.getElementById('empFormName').value = '';
+    document.getElementById('empFormDept').value = '';
+  }
+  document.getElementById('employeeFormModal').classList.add('show');
+}
+function closeEmployeeFormModal(){
+  document.getElementById('employeeFormModal').classList.remove('show');
+}
+function saveEmployeeForm(){
+  const id = document.getElementById('empFormId').value;
+  const name = document.getElementById('empFormName').value.trim();
+  const dept = document.getElementById('empFormDept').value.trim();
+  const err = document.getElementById('employeeFormError');
+  if(!name || !dept){ err.classList.add('show'); return; }
+  err.classList.remove('show');
+  if(id){
+    const e = employees.find(x=>x.id===id);
+    if(e){ e.name = name; e.dept = dept; }
+  } else {
+    employees.push({ id:'emp_'+Date.now()+'_'+Math.floor(Math.random()*1000), name, dept, leaderId: currentLeader.id, createdAt: Date.now() });
+  }
+  saveEmployees().then(()=>{
+    closeEmployeeFormModal();
+    renderMyTeam();
+    renderAlertBanner();
+    populateEmployeeSelect();
+    if(window.__isAdmin){ renderEmployeesTab(); }
+    showToast('Colaborador salvo.');
+  });
+}
+function removeEmployee(id){
+  const e = employees.find(x=>x.id===id);
+  if(!e) return;
+  if(!confirm(`Remover o colaborador ${e.name}? O histórico de registros será mantido, mas ele não aparecerá mais na lista de colaboradores.`)) return;
+  employees = employees.filter(x=>x.id!==id);
+  saveEmployees().then(()=>{
+    renderMyTeam();
+    renderAlertBanner();
+    populateEmployeeSelect();
+    if(window.__isAdmin){ renderEmployeesTab(); renderStats(); renderRankings(); }
+    showToast('Colaborador removido.');
+  });
+}
+function populateEmployeeSelect(selectId){
+  if(!currentLeader) return;
+  const sel = document.getElementById('f_employee_select');
+  if(!sel) return;
+  const mine = myEmployees();
+  sel.innerHTML = `<option value="">Selecione...</option>` +
+    mine.map(e=>`<option value="${e.id}">${escapeHtml(e.name)}</option>`).join('') +
+    `<option value="__new__">+ Adicionar novo colaborador</option>`;
+  sel.value = selectId || "";
+  handleEmployeeSelectChange();
+}
+function handleEmployeeSelectChange(){
+  const sel = document.getElementById('f_employee_select');
+  const hint = document.getElementById('f_employee_dept_hint');
+  const inline = document.getElementById('inlineAddEmp');
+  if(sel.value === '__new__'){
+    inline.classList.add('show');
+    hint.textContent = '';
+    return;
+  }
+  inline.classList.remove('show');
+  const emp = employees.find(e=>e.id===sel.value);
+  hint.textContent = emp ? `Área/Departamento: ${emp.dept}` : '';
+}
+function quickAddEmployee(){
+  const name = document.getElementById('f_new_emp_name').value.trim();
+  const dept = document.getElementById('f_new_emp_dept').value.trim();
+  if(!name || !dept){ showToast('Informe nome e área do novo colaborador.'); return; }
+  const emp = { id:'emp_'+Date.now()+'_'+Math.floor(Math.random()*1000), name, dept, leaderId: currentLeader.id, createdAt: Date.now() };
+  employees.push(emp);
+  saveEmployees().then(()=>{
+    document.getElementById('f_new_emp_name').value = '';
+    document.getElementById('f_new_emp_dept').value = '';
+    populateEmployeeSelect(emp.id);
+    renderMyTeam();
+    renderAlertBanner();
+    showToast('Colaborador adicionado.');
+  });
+}
+
+/* ============ Leader form (1:1) ============ */
+function openLeaderForm(){
+  document.getElementById('f_date').value = todayISO();
+  document.getElementById('f_next_meeting').value = "";
+  populateEmployeeSelect();
+  document.getElementById('inlineAddEmp').classList.remove('show');
+  document.getElementById('f_new_emp_name').value = "";
+  document.getElementById('f_new_emp_dept').value = "";
+  renderDynamicQuestions();
+  currentRating = null;
+  document.querySelectorAll('#ratingRow .rating-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('formError').classList.remove('show');
+  showScreen('screen-leader-form');
+}
+function renderDynamicQuestions(){
+  const wrap = document.getElementById('dynamicQuestions');
+  const active = questions.filter(q=>q.active).sort((a,b)=>a.order-b.order);
+  currentToggle = {};
+  wrap.innerHTML = active.map(q=>{
+    if(q.type === 'yesno'){
+      currentToggle[q.id] = null;
+      return `<div class="q-block">
+        <div class="q-block-head">
+          <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></svg></span>
+          <label>${escapeHtml(q.text)} *</label>
+        </div>
+        <div class="toggle-row">
+          <button type="button" class="toggle-btn yes" onclick="setDynamicToggle('${q.id}','sim',this)">Sim</button>
+          <button type="button" class="toggle-btn no" onclick="setDynamicToggle('${q.id}','nao',this)">Não</button>
+        </div>
+        <div class="conditional" id="cond_${q.id}">
+          <textarea id="dq_${q.id}_detail" placeholder="Caso não, favor detalhar o motivo"></textarea>
+        </div>
+      </div>`;
+    }
+    return `<div class="q-block">
+      <div class="q-block-head">
+        <span class="q-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V7l8-4 8 4v14"></path><path d="M9 21v-6h6v6M9 11h.01M15 11h.01M9 15h.01M15 15h.01"></path></svg></span>
+        <label>${escapeHtml(q.text)} *</label>
+      </div>
+      <textarea id="dq_${q.id}" placeholder="Digite sua resposta..."></textarea>
+    </div>`;
+  }).join('');
+}
+function setDynamicToggle(qId, value, btnEl){
+  currentToggle[qId] = value;
+  const block = btnEl.closest('.q-block');
+  block.querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
+  btnEl.classList.add('active');
+  const cond = document.getElementById(`cond_${qId}`);
+  if(value==='nao') cond.classList.add('show'); else cond.classList.remove('show');
+}
+function setRating(value){
+  currentRating = value;
+  document.querySelectorAll('#ratingRow .rating-btn').forEach(b=>b.classList.toggle('active', b.dataset.r===value));
+}
+function submitRecord(){
+  const date = document.getElementById('f_date').value;
+  const empSel = document.getElementById('f_employee_select').value;
+  const nextMeeting = document.getElementById('f_next_meeting').value;
+  const err = document.getElementById('formError');
+
+  if(!empSel || empSel === '__new__'){
+    err.classList.add('show');
+    return;
+  }
+  const employeeObj = employees.find(e=>e.id===empSel);
+  if(!employeeObj){
+    err.classList.add('show');
+    return;
+  }
+
+  const active = questions.filter(q=>q.active).sort((a,b)=>a.order-b.order);
+  const answers = [];
+  let missing = !date || !currentRating;
+
+  active.forEach(q=>{
+    if(q.type === 'yesno'){
+      const status = currentToggle[q.id];
+      const detailEl = document.getElementById(`dq_${q.id}_detail`);
+      const detail = detailEl ? detailEl.value.trim() : '';
+      if(!status) missing = true;
+      if(status === 'nao' && !detail) missing = true;
+      answers.push({ questionId: q.id, question: q.text, type: q.type, value: status || '', detail });
+    } else {
+      const el = document.getElementById(`dq_${q.id}`);
+      const value = el ? el.value.trim() : '';
+      if(!value) missing = true;
+      answers.push({ questionId: q.id, question: q.text, type: q.type, value, detail: '' });
+    }
+  });
+
+  if(missing){
+    err.classList.add('show');
+    return;
+  }
+  err.classList.remove('show');
+
+  const record = {
+    id: 'rec_' + Date.now() + '_' + Math.floor(Math.random()*1000),
+    leaderId: currentLeader.id,
+    leaderName: currentLeader.name,
+    employeeId: employeeObj.id,
+    employeeName: employeeObj.name,
+    dept: employeeObj.dept,
+    date, answers,
+    rating: currentRating,
+    nextMeeting: nextMeeting || '',
+    createdAt: Date.now()
+  };
+  records.push(record);
+  saveRecords().then(()=>{
+    showToast('Registro enviado com sucesso.');
+    renderLeaderDashboard();
+    showScreen('screen-leader-dash');
+  });
+}
+
+/* ============ Admin dashboard ============ */
+function switchTab(tabId){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===tabId));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active', p.id===tabId));
+  if(tabId==='tab-overview') renderCompanyCharts();
+}
+async function refreshAdminData(){
+  await loadData();
+  renderAdminAll();
+  showToast('Dados atualizados.');
+}
+function renderAdminAll(){
+  renderStats();
+  renderCompanyCharts();
+  renderRankings();
+  renderOverviewRecent();
+  renderLeaderTable();
+  populateLeaderFilter();
+  renderEmployeesTab();
+  renderQuestionsTab();
+  renderAdminRecords();
+}
+function renderStats(){
+  document.getElementById('statTotal').textContent = records.length;
+  document.getElementById('statLeaders').textContent = leaders.length;
+  document.getElementById('statEmployees').textContent = employees.length;
+
+  const ym = todayISO().slice(0,7);
+  document.getElementById('statMonth').textContent = records.filter(r=>(r.date||'').slice(0,7)===ym).length;
+
+  const rated = records.filter(r=>r.rating);
+  const avg = rated.length ? rated.reduce((s,r)=>s+RATING_META[r.rating].value,0)/rated.length : null;
+  document.getElementById('statAvg').textContent = avg ? `${avg.toFixed(1)} · ${nearestRatingLabel(avg)}` : '—';
+
+  let pending = 0, overdue = 0;
+  employees.forEach(e=>{
+    const st = dayStatus(employeeDaysSinceFeedback(e));
+    if(st!=='ok') pending++;
+    if(st==='risk') overdue++;
+  });
+  document.getElementById('statPending').textContent = pending;
+  document.getElementById('statOverdue').textContent = overdue;
+
+  const attentionQ = questions.find(q=>q.kind==='attention');
+  let attentionCount = 0;
+  records.forEach(r=>{
+    if(r.answers){
+      if(attentionQ){ const a=r.answers.find(x=>x.questionId===attentionQ.id); if(a && a.value==='nao') attentionCount++; }
+    } else if(r.attention && r.attention.status==='nao'){ attentionCount++; }
+  });
+  document.getElementById('statAttention').textContent = attentionCount;
+
+  const overloadQ = questions.find(q=>q.kind==='overload');
+  let overloadCount = 0;
+  records.forEach(r=>{
+    if(r.answers){
+      if(overloadQ){ const a=r.answers.find(x=>x.questionId===overloadQ.id); if(a && !isNegativeText(a.value)) overloadCount++; }
+    } else if(!isNegativeText(r.overload)){ overloadCount++; }
+  });
+  document.getElementById('statOverload').textContent = overloadCount;
+}
+function renderOverviewRecent(){
+  const wrap = document.getElementById('overviewRecent');
+  const recent = [...records].sort((a,b)=>b.createdAt-a.createdAt).slice(0,5);
+  if(recent.length===0){
+    wrap.innerHTML = `<div class="empty-state"><strong>Nenhum registro ainda</strong>Assim que os líderes começarem a registrar 1:1s, eles aparecerão aqui.</div>`;
+    return;
+  }
+  wrap.innerHTML = recent.map(r=>recordCardHtml(r,true)).join('');
+}
+
+/* ---- Leaders tab ---- */
+function renderLeaderTable(){
+  const wrap = document.getElementById('leaderTableWrap');
+  if(leaders.length===0){
+    wrap.innerHTML = `<div class="empty-state"><strong>Nenhum líder cadastrado</strong>Adicione o primeiro líder acima para gerar o código de acesso dele.</div>`;
+    return;
+  }
+  const rows = leaders.map(l=>{
+    const count = records.filter(r=>r.leaderId===l.id).length;
+    const empCount = employees.filter(e=>e.leaderId===l.id).length;
+    return `<tr>
+      <td>${escapeHtml(l.name)}</td>
+      <td><span class="code-pill">${escapeHtml(l.code)}</span></td>
+      <td>${empCount}</td>
+      <td>${count}</td>
+      <td style="display:flex;gap:6px;">
+        <button class="icon-btn copy" onclick="copyCode('${l.code}')">Copiar código</button>
+        <button class="icon-btn" onclick="removeLeader('${l.id}')">Remover</button>
+      </td>
+    </tr>`;
+  }).join('');
+  wrap.innerHTML = `<table class="data-table">
+    <thead><tr><th>Nome</th><th>Código de acesso</th><th>Colaboradores</th><th>1:1s registrados</th><th>Ações</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+function addLeader(){
+  const input = document.getElementById('newLeaderName');
+  const name = input.value.trim();
+  if(!name){ showToast('Informe o nome do líder.'); return; }
+  const leader = { id: 'ld_'+Date.now()+'_'+Math.floor(Math.random()*1000), name, code: genCode(name), createdAt: Date.now() };
+  leaders.push(leader);
+  saveLeaders().then(()=>{
+    input.value = "";
+    renderLeaderTable();
+    populateLeaderFilter();
+    renderStats();
+    showToast(`Líder adicionado. Código: ${leader.code}`);
+  });
+}
+function removeLeader(id){
+  const leader = leaders.find(l=>l.id===id);
+  if(!leader) return;
+  if(!confirm(`Remover o líder ${leader.name}? O código de acesso ${leader.code} deixará de funcionar. Os registros já feitos serão mantidos.`)) return;
+  leaders = leaders.filter(l=>l.id!==id);
+  saveLeaders().then(()=>{
+    renderLeaderTable();
+    populateLeaderFilter();
+    renderStats();
+    renderEmployeesTab();
+    showToast('Líder removido.');
+  });
+}
+function copyCode(code){
+  navigator.clipboard?.writeText(code).then(()=>showToast(`Código ${code} copiado.`)).catch(()=>showToast(code));
+}
+function populateLeaderFilter(){
+  const sel = document.getElementById('filterLeader');
+  const currentVal = sel.value;
+  sel.innerHTML = `<option value="">Todos os líderes</option>` +
+    leaders.map(l=>`<option value="${l.id}">${escapeHtml(l.name)}</option>`).join('');
+  sel.value = currentVal;
+}
+
+/* ---- Employees tab ---- */
+function populateEmployeeLeaderFilter(){
+  const sel = document.getElementById('filterEmpLeader');
+  if(!sel) return;
+  const currentVal = sel.value;
+  sel.innerHTML = `<option value="">Todos os líderes</option>` +
+    leaders.map(l=>`<option value="${l.id}">${escapeHtml(l.name)}</option>`).join('');
+  sel.value = currentVal;
+}
+function renderEmployeesTab(){
+  const wrap = document.getElementById('employeeTableWrap');
+  if(!wrap) return;
+  populateEmployeeLeaderFilter();
+  const leaderF = document.getElementById('filterEmpLeader') ? document.getElementById('filterEmpLeader').value : '';
+  const nameF = document.getElementById('filterEmpName') ? document.getElementById('filterEmpName').value.trim().toLowerCase() : '';
+
+  if(employees.length===0){
+    wrap.innerHTML = `<div class="empty-state"><strong>Nenhum colaborador cadastrado</strong>Os líderes podem adicionar colaboradores pelo próprio painel deles.</div>`;
+    return;
+  }
+  let list = [...employees];
+  if(leaderF) list = list.filter(e=>e.leaderId===leaderF);
+  if(nameF) list = list.filter(e=>e.name.toLowerCase().includes(nameF));
+  if(list.length===0){
+    wrap.innerHTML = `<div class="empty-state"><strong>Nenhum colaborador encontrado</strong>Ajuste os filtros acima.</div>`;
+    return;
+  }
+  const rows = list.map(e=>{
+    const leader = leaders.find(l=>l.id===e.leaderId);
+    const days = employeeDaysSinceFeedback(e);
+    const stats = employeeStats(e.id);
+    const avgTxt = stats.avg!==null ? `${stats.avg.toFixed(1)} · ${nearestRatingLabel(stats.avg)}` : '—';
+    return `<tr style="cursor:pointer;" onclick="openEmployeeEvolutionModal('${e.id}')">
+      <td>${escapeHtml(e.name)}</td>
+      <td>${escapeHtml(e.dept)}</td>
+      <td>${escapeHtml(leader ? leader.name : '(líder removido)')}</td>
+      <td>${dayBadgeHtml(days)}</td>
+      <td>${avgTxt}</td>
+      <td onclick="event.stopPropagation()"><button class="icon-btn" onclick="removeEmployee('${e.id}')">Remover</button></td>
+    </tr>`;
+  }).join('');
+  wrap.innerHTML = `<table class="data-table">
+    <thead><tr><th>Nome</th><th>Área</th><th>Líder</th><th>Dias sem feedback</th><th>Média</th><th>Ações</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+/* ---- Questions tab ---- */
+function setNewQuestionType(t){
+  newQuestionType = t;
+  document.getElementById('newQTypeText').classList.toggle('active', t==='text');
+  document.getElementById('newQTypeYesno').classList.toggle('active', t==='yesno');
+}
+function addQuestion(){
+  const text = document.getElementById('newQuestionText').value.trim();
+  if(!text){ showToast('Digite o texto da pergunta.'); return; }
+  const maxOrder = questions.reduce((m,q)=>Math.max(m,q.order||0),0);
+  const q = { id:'q_'+Date.now()+'_'+Math.floor(Math.random()*1000), text, type:newQuestionType, kind:null, order:maxOrder+1, active:true, createdAt:Date.now() };
+  questions.push(q);
+  saveQuestions().then(()=>{
+    document.getElementById('newQuestionText').value = '';
+    setNewQuestionType('text');
+    renderQuestionsTab();
+    showToast('Pergunta adicionada.');
+  });
+}
+function renderQuestionsTab(){
+  const wrap = document.getElementById('questionTableWrap');
+  if(!wrap) return;
+  if(questions.length===0){
+    wrap.innerHTML = `<div class="empty-state"><strong>Nenhuma pergunta cadastrada</strong>Adicione a primeira pergunta acima.</div>`;
+    return;
+  }
+  const sorted = [...questions].sort((a,b)=>a.order-b.order);
+  const rows = sorted.map((q,idx)=>{
+    const count = records.filter(r=>r.answers && r.answers.some(a=>a.questionId===q.id)).length;
+    return `<tr>
+      <td><div class="order-btns">
+        <button onclick="moveQuestion('${q.id}',-1)" ${idx===0?'disabled':''}>▲</button>
+        <button onclick="moveQuestion('${q.id}',1)" ${idx===sorted.length-1?'disabled':''}>▼</button>
+      </div></td>
+      <td style="max-width:320px;">${escapeHtml(q.text)}</td>
+      <td>${q.type==='yesno'?'Sim/Não':'Texto livre'}</td>
+      <td><button class="status-toggle ${q.active?'on':'off'}" onclick="toggleQuestionActive('${q.id}')">${q.active?'Ativa':'Inativa'}</button></td>
+      <td>${count}</td>
+      <td style="display:flex;gap:6px;">
+        <button class="icon-btn copy" onclick="openQuestionFormModal('${q.id}')">Editar</button>
+        <button class="icon-btn" onclick="deleteQuestion('${q.id}')">Excluir</button>
+      </td>
+    </tr>`;
+  }).join('');
+  wrap.innerHTML = `<table class="data-table">
+    <thead><tr><th>Ordem</th><th>Pergunta</th><th>Tipo</th><th>Status</th><th>Respostas</th><th>Ações</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+function moveQuestion(id, dir){
+  const sorted = [...questions].sort((a,b)=>a.order-b.order);
+  const idx = sorted.findIndex(q=>q.id===id);
+  const swapIdx = idx+dir;
+  if(swapIdx<0 || swapIdx>=sorted.length) return;
+  const a = sorted[idx], b = sorted[swapIdx];
+  const tmp = a.order; a.order = b.order; b.order = tmp;
+  saveQuestions().then(renderQuestionsTab);
+}
+function toggleQuestionActive(id){
+  const q = questions.find(x=>x.id===id);
+  if(!q) return;
+  q.active = !q.active;
+  saveQuestions().then(renderQuestionsTab);
+}
+function deleteQuestion(id){
+  const q = questions.find(x=>x.id===id);
+  if(!q) return;
+  if(!confirm(`Excluir a pergunta "${q.text}"? As respostas já registradas serão mantidas no histórico, mas ela deixará de aparecer no formulário dos líderes.`)) return;
+  questions = questions.filter(x=>x.id!==id);
+  saveQuestions().then(renderQuestionsTab);
+}
+function openQuestionFormModal(id){
+  const q = questions.find(x=>x.id===id);
+  if(!q) return;
+  document.getElementById('editQuestionId').value = id;
+  document.getElementById('editQuestionText').value = q.text;
+  document.getElementById('questionFormError').classList.remove('show');
+  setEditQuestionType(q.type);
+  document.getElementById('questionFormModal').classList.add('show');
+}
+function setEditQuestionType(t){
+  editQuestionType = t;
+  document.getElementById('editQTypeText').classList.toggle('active', t==='text');
+  document.getElementById('editQTypeYesno').classList.toggle('active', t==='yesno');
+}
+function closeQuestionFormModal(){
+  document.getElementById('questionFormModal').classList.remove('show');
+}
+function saveQuestionForm(){
+  const id = document.getElementById('editQuestionId').value;
+  const text = document.getElementById('editQuestionText').value.trim();
+  const err = document.getElementById('questionFormError');
+  if(!text){ err.classList.add('show'); return; }
+  err.classList.remove('show');
+  const q = questions.find(x=>x.id===id);
+  if(q){ q.text = text; q.type = editQuestionType; }
+  saveQuestions().then(()=>{
+    closeQuestionFormModal();
+    renderQuestionsTab();
+    showToast('Pergunta atualizada.');
+  });
+}
+
+/* ---- Records tab ---- */
+function clearFilters(){
+  document.getElementById('filterLeader').value = "";
+  document.getElementById('filterEmployee').value = "";
+  document.getElementById('filterDate').value = "";
+  document.getElementById('filterRating').value = "";
+  renderAdminRecords();
+}
+function renderAdminRecords(){
+  const leaderF = document.getElementById('filterLeader').value;
+  const empF = document.getElementById('filterEmployee').value.trim().toLowerCase();
+  const dateF = document.getElementById('filterDate').value;
+  const ratingF = document.getElementById('filterRating').value;
+  let filtered = [...records];
+  if(leaderF) filtered = filtered.filter(r=>r.leaderId===leaderF);
+  if(empF) filtered = filtered.filter(r=>(r.employeeName||r.employee||'').toLowerCase().includes(empF));
+  if(dateF) filtered = filtered.filter(r=>r.date===dateF);
+  if(ratingF) filtered = filtered.filter(r=>r.rating===ratingF);
+  filtered.sort((a,b)=>b.createdAt-a.createdAt);
+
+  const wrap = document.getElementById('adminRecordList');
+  if(filtered.length===0){
+    wrap.innerHTML = `<div class="empty-state"><strong>Nenhum registro encontrado</strong>Ajuste os filtros ou aguarde novos registros dos líderes.</div>`;
+    return;
+  }
+  wrap.innerHTML = filtered.map(r=>recordCardHtml(r,true)).join('');
+}
+function exportCSV(){
+  if(records.length===0){ showToast('Não há registros para exportar.'); return; }
+  const headers = ['Data','Líder','Colaborador','Área/Departamento','Nota final','Próxima reunião','Perguntas e respostas'];
+  const rows = records.map(r=>{
+    let qa = '';
+    if(r.answers){
+      qa = r.answers.map(a=>{
+        const val = a.type==='yesno' ? (a.value==='sim'?'Sim':('Não - '+(a.detail||''))) : a.value;
+        return `${a.question}: ${val}`;
+      }).join(' | ');
+    } else {
+      qa = [
+        `Desempenho: ${r.performance||''}`,
+        `Cumpriu prazos: ${r.deadlines&&r.deadlines.status==='sim'?'Sim':'Não - '+((r.deadlines&&r.deadlines.reason)||'')}`,
+        `Ponto de atenção: ${r.attention&&r.attention.status==='sim'?'Sim':'Não - '+((r.attention&&r.attention.detail)||'')}`,
+        `Habilidade: ${r.skill||''}`,
+        `Plano de ação: ${r.actionplan||''}`,
+        `Sobrecarga/Conflito: ${r.overload||''}`,
+        `Combinados: ${r.agreed||''}`,
+        `RH: ${r.hr||''}`
+      ].join(' | ');
+    }
+    return [
+      fmtDate(r.date), r.leaderName, (r.employeeName||r.employee||''), (r.dept||''),
+      r.rating ? RATING_META[r.rating].label : '', r.nextMeeting ? fmtDate(r.nextMeeting) : '',
+      qa
+    ];
+  });
+  const csvEsc = v => `"${String(v??'').replace(/"/g,'""')}"`;
+  const csv = [headers.map(csvEsc).join(';'), ...rows.map(row=>row.map(csvEsc).join(';'))].join('\n');
+  const blob = new Blob(["\uFEFF"+csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'registros_1a1.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+/* ============ Charts (admin overview) ============ */
+function renderCompanyCharts(){
+  const canvas1 = document.getElementById('companyEvolutionChart');
+  const canvas2 = document.getElementById('distributionChart');
+  if(!canvas1 || !canvas2 || typeof Chart==='undefined') return;
+  if(chartCompanyEvolution){ chartCompanyEvolution.destroy(); chartCompanyEvolution = null; }
+  if(chartDistribution){ chartDistribution.destroy(); chartDistribution = null; }
+
+  const rated = records.filter(r=>r.rating).sort((a,b)=> a.date<b.date?-1:(a.date>b.date?1:0));
+  if(rated.length===0) return;
+
+  const muted = cssVar('--muted') || '#8F8F9D';
+  const teal = cssVar('--teal') || '#8B5CF6';
+  const border = cssVar('--border') || '#262630';
+  const surface = cssVar('--surface') || '#15151A';
+
+  const byMonth = {};
+  rated.forEach(r=>{
+    const key = (r.date||'').slice(0,7);
+    if(!key) return;
+    if(!byMonth[key]) byMonth[key] = [];
+    byMonth[key].push(RATING_META[r.rating].value);
+  });
+  const months = Object.keys(byMonth).sort();
+  const avgs = months.map(m => byMonth[m].reduce((s,v)=>s+v,0)/byMonth[m].length);
+
+  chartCompanyEvolution = new Chart(canvas1, {
+    type: 'line',
+    data: {
+      labels: months.map(monthLabel),
+      datasets: [{
+        label: 'Média da empresa',
+        data: avgs,
+        borderColor: teal,
+        backgroundColor: teal,
+        tension: .3,
+        pointRadius: 4,
+        pointBackgroundColor: teal
+      }]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      scales:{
+        y:{ min:1, max:4, ticks:{ stepSize:1, color:muted, callback:v=>RATING_LABEL_BY_VALUE[v]||v }, grid:{ color:border } },
+        x:{ ticks:{ color:muted }, grid:{ display:false } }
+      },
+      plugins:{ legend:{ display:false } }
+    }
+  });
+
+  const counts = RATING_ORDER.map(k => rated.filter(r=>r.rating===k).length);
+  const colors = RATING_ORDER.map(k => cssVar(RATING_META[k].colorVar) || teal);
+
+  chartDistribution = new Chart(canvas2, {
+    type: 'doughnut',
+    data: {
+      labels: RATING_ORDER.map(k=>RATING_META[k].label),
+      datasets: [{ data: counts, backgroundColor: colors, borderColor: surface, borderWidth:2 }]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:'bottom', labels:{ color: muted, boxWidth:10, padding:12, font:{size:11} } } }
+    }
+  });
+}
+
+/* ============ Rankings (admin overview) ============ */
+function renderRankings(){
+  renderRankTeams();
+  renderRankLeaders();
+  renderRankImproved();
+  renderRankOverdue();
+}
+function renderRankTeams(){
+  const el = document.getElementById('rankTeams');
+  if(!el) return;
+  const byDept = {};
+  records.filter(r=>r.rating).forEach(r=>{
+    const dept = r.dept || 'Sem área';
+    if(!byDept[dept]) byDept[dept] = [];
+    byDept[dept].push(RATING_META[r.rating].value);
+  });
+  const arr = Object.keys(byDept).map(d=>({ name:d, avg: byDept[d].reduce((s,v)=>s+v,0)/byDept[d].length })).sort((a,b)=>b.avg-a.avg).slice(0,5);
+  el.innerHTML = arr.length ? arr.map((x,i)=>`<li><span class="rank-n">${i+1}</span><span class="rank-name">${escapeHtml(x.name)}</span><span class="rank-val">${x.avg.toFixed(1)}</span></li>`).join('')
+    : `<li class="rank-empty">Ainda sem dados suficientes.</li>`;
+}
+function renderRankLeaders(){
+  const el = document.getElementById('rankLeaders');
+  if(!el) return;
+  const arr = leaders.map(l=>({ name:l.name, count: records.filter(r=>r.leaderId===l.id).length })).filter(x=>x.count>0).sort((a,b)=>b.count-a.count).slice(0,5);
+  el.innerHTML = arr.length ? arr.map((x,i)=>`<li><span class="rank-n">${i+1}</span><span class="rank-name">${escapeHtml(x.name)}</span><span class="rank-val">${x.count} 1:1s</span></li>`).join('')
+    : `<li class="rank-empty">Ainda sem dados suficientes.</li>`;
+}
+function renderRankImproved(){
+  const el = document.getElementById('rankImproved');
+  if(!el) return;
+  const arr = employees.map(e=>{
+    const stats = employeeStats(e.id);
+    return { name:e.name, delta: stats.delta };
+  }).filter(x=>x.delta!==null && x.delta>0).sort((a,b)=>b.delta-a.delta).slice(0,5);
+  el.innerHTML = arr.length ? arr.map((x,i)=>`<li><span class="rank-n">${i+1}</span><span class="rank-name">${escapeHtml(x.name)}</span><span class="rank-val">+${x.delta.toFixed(1)}</span></li>`).join('')
+    : `<li class="rank-empty">Ainda sem dados suficientes.</li>`;
+}
+function renderRankOverdue(){
+  const el = document.getElementById('rankOverdue');
+  if(!el) return;
+  const arr = employees.map(e=>({ name:e.name, days: employeeDaysSinceFeedback(e) })).sort((a,b)=>b.days-a.days).slice(0,5);
+  el.innerHTML = arr.length ? arr.map((x,i)=>`<li><span class="rank-n">${i+1}</span><span class="rank-name">${escapeHtml(x.name)}</span><span class="rank-val">${x.days}d</span></li>`).join('')
+    : `<li class="rank-empty">Ainda sem colaboradores cadastrados.</li>`;
+}
+
+/* ============ Record modal (shared by leader + admin) ============ */
+function openRecordModal(id){
+  const r = records.find(x=>x.id===id);
+  if(!r) return;
+  const c = document.getElementById('modalContent');
+  const empName = r.employeeName || r.employee || '';
+  const deptName = r.dept || '';
+  let bodyHtml = '';
+  if(r.answers){
+    if(r.rating){
+      bodyHtml += `<div class="detail-row"><div class="dlabel">Nota final</div><div class="dval"><span class="rating-pill ${r.rating}">${RATING_META[r.rating].label}</span></div></div>`;
+    }
+    bodyHtml += r.answers.map(a=>{
+      const val = a.type==='yesno' ? (a.value==='sim' ? 'Sim' : ('Não — ' + escapeHtml(a.detail||''))) : escapeHtml(a.value);
+      return `<div class="detail-row"><div class="dlabel">${escapeHtml(a.question)}</div><div class="dval">${val}</div></div>`;
+    }).join('');
+    if(r.nextMeeting){
+      bodyHtml += `<div class="detail-row"><div class="dlabel">Próxima reunião</div><div class="dval">${fmtDate(r.nextMeeting)}</div></div>`;
+    }
+  } else {
+    bodyHtml = `
+      <div class="detail-row"><div class="dlabel">Desempenho na execução das atividades</div><div class="dval">${escapeHtml(r.performance)}</div></div>
+      <div class="detail-row"><div class="dlabel">Cumprindo prazos e compromissos?</div><div class="dval">${r.deadlines.status==='sim'?'Sim':'Não — '+escapeHtml(r.deadlines.reason)}</div></div>
+      <div class="detail-row"><div class="dlabel">Ponto de atenção / comportamento</div><div class="dval">${r.attention.status==='sim'?'Sim':'Não — '+escapeHtml(r.attention.detail)}</div></div>
+      <div class="detail-row"><div class="dlabel">Habilidade — oportunidade de melhoria</div><div class="dval">${escapeHtml(r.skill)}</div></div>
+      <div class="detail-row"><div class="dlabel">Plano de ação / próximos passos</div><div class="dval">${escapeHtml(r.actionplan)}</div></div>
+      <div class="detail-row"><div class="dlabel">Sobrecarga, conflito ou insatisfação relatada</div><div class="dval">${escapeHtml(r.overload)}</div></div>
+      <div class="detail-row"><div class="dlabel">Combinados para o próximo 1:1</div><div class="dval">${escapeHtml(r.agreed)}</div></div>
+      <div class="detail-row"><div class="dlabel">O que o RH precisa saber ou apoiar</div><div class="dval">${escapeHtml(r.hr)}</div></div>
+    `;
+  }
+  c.innerHTML = `
+    <h3>${escapeHtml(empName)}</h3>
+    <p class="modal-sub">${escapeHtml(deptName)} · ${fmtDate(r.date)} · Líder: ${escapeHtml(r.leaderName)}</p>
+    ${bodyHtml}
+    <div class="modal-footer">
+      ${window.__isAdmin ? `<button class="icon-btn" onclick="deleteRecord('${r.id}')">Excluir registro</button>` : ''}
+      <button class="btn-secondary" onclick="closeModal()">Fechar</button>
+    </div>
+  `;
+  document.getElementById('recordModal').classList.add('show');
+}
+function closeModal(){
+  document.getElementById('recordModal').classList.remove('show');
+}
+function deleteRecord(id){
+  if(!confirm('Excluir este registro definitivamente?')) return;
+  records = records.filter(r=>r.id!==id);
+  saveRecords().then(()=>{
+    closeModal();
+    renderAdminAll();
+    showToast('Registro excluído.');
+  });
+}
+
+/* ============ Employee evolution modal (shared by leader + admin) ============ */
+function openEmployeeEvolutionModal(employeeId){
+  const emp = employees.find(e=>e.id===employeeId);
+  if(!emp) return;
+  const leader = leaders.find(l=>l.id===emp.leaderId);
+  const stats = employeeStats(employeeId);
+  const c = document.getElementById('employeeModalContent');
+
+  const trendHtml = stats.trend==='melhora' ? '<span class="trend-up">▲ Em melhora</span>' :
+    stats.trend==='queda' ? '<span class="trend-down">▼ Em queda</span>' :
+    stats.trend==='estavel' ? '<span class="trend-flat">● Estável</span>' :
+    '<span class="trend-flat">Dados insuficientes</span>';
+
+  const allRecs = records.filter(r=>recordEmployeeId(r)===employeeId)
+    .sort((a,b)=> b.date>a.date?1:(b.date<a.date?-1:(b.createdAt||0)-(a.createdAt||0)));
+
+  const chartSection = stats.records.length
+    ? `<div class="chart-wrap" style="height:200px;"><canvas id="employeeEvolutionChart"></canvas></div>`
+    : `<div class="chart-empty">Ainda não há notas suficientes para exibir o gráfico de evolução.</div>`;
+
+  c.innerHTML = `
+    <h3>${escapeHtml(emp.name)}</h3>
+    <p class="modal-sub">${escapeHtml(emp.dept)} · Líder: ${escapeHtml(leader ? leader.name : '(removido)')} · ${dayBadgeHtml(employeeDaysSinceFeedback(emp))}</p>
+    <div class="mini-stat-grid">
+      <div class="mini-stat"><div class="mlbl">Média</div><div class="mval">${stats.avg!==null?stats.avg.toFixed(1)+' · '+nearestRatingLabel(stats.avg):'—'}</div></div>
+      <div class="mini-stat"><div class="mlbl">Melhor período</div><div class="mval">${stats.best?RATING_META[stats.best.rating].label+' — '+fmtDate(stats.best.date):'—'}</div></div>
+      <div class="mini-stat"><div class="mlbl">Pior período</div><div class="mval">${stats.worst?RATING_META[stats.worst.rating].label+' — '+fmtDate(stats.worst.date):'—'}</div></div>
+      <div class="mini-stat"><div class="mlbl">Tendência</div><div class="mval">${trendHtml}</div></div>
+    </div>
+    ${chartSection}
+    <div class="divider-row" style="margin-top:24px;"><div class="mini-mark"><span></span><span></span></div><h3>Histórico</h3></div>
+    <div class="mini-history">
+      ${allRecs.length ? allRecs.map(r=>`<div class="mini-history-item" onclick="closeEmployeeModal();openRecordModal('${r.id}')">
+          <span>${fmtDate(r.date)}</span>
+          ${r.rating ? `<span class="rating-pill ${r.rating}">${RATING_META[r.rating].label}</span>` : '<span style="color:var(--muted);">Sem nota</span>'}
+        </div>`).join('') : '<div class="chart-empty">Nenhum registro ainda.</div>'}
+    </div>
+    <div class="modal-footer">
+      ${window.__isAdmin ? `<button class="icon-btn" onclick="closeEmployeeModal();removeEmployee('${emp.id}')">Remover colaborador</button>` : `<button class="icon-btn" onclick="closeEmployeeModal();openEmployeeFormModal('${emp.id}')">Editar colaborador</button>`}
+      <button class="btn-secondary" onclick="closeEmployeeModal()">Fechar</button>
+    </div>
+  `;
+  document.getElementById('employeeModal').classList.add('show');
+
+  if(stats.records.length && typeof Chart!=='undefined'){
+    const canvas = document.getElementById('employeeEvolutionChart');
+    const muted = cssVar('--muted') || '#8F8F9D';
+    const teal = cssVar('--teal') || '#8B5CF6';
+    const border = cssVar('--border') || '#262630';
+    if(chartEmployeeEvolution){ chartEmployeeEvolution.destroy(); chartEmployeeEvolution = null; }
+    chartEmployeeEvolution = new Chart(canvas, {
+      type: 'line',
+      data: {
+        labels: stats.records.map(r=>fmtDate(r.date)),
+        datasets: [{ data: stats.records.map(r=>RATING_META[r.rating].value), borderColor:teal, backgroundColor:teal, tension:.3, pointRadius:4, pointBackgroundColor:teal }]
+      },
+      options: {
+        responsive:true, maintainAspectRatio:false,
+        scales:{ y:{ min:1, max:4, ticks:{ stepSize:1, color:muted, callback:v=>RATING_LABEL_BY_VALUE[v]||v }, grid:{color:border} }, x:{ ticks:{color:muted}, grid:{display:false} } },
+        plugins:{ legend:{ display:false } }
+      }
+    });
+  }
+}
+function closeEmployeeModal(){
+  document.getElementById('employeeModal').classList.remove('show');
+}
+
+/* ============ Init ============ */
+async function init(){
+  await loadData();
+  showScreen('screen-gate');
+}
+init();
+</script>
+</body>
+</html>
